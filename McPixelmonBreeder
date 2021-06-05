@@ -1,0 +1,137 @@
+#SingleInstance, Force
+F1::ExitApp
+
+f3::
+{
+	Loop {
+		sleep 50
+		Test()
+		sleep 50
+		AFKlog()
+		sleep 50
+		Relog()
+		sleep 50
+		Down()
+		sleep 50
+		Test()
+		sleep 50
+		Up()
+		sleep 50
+		AFKlog()
+		sleep 50
+		Relog()
+		sleep 50
+	}
+	
+}
+Down() {
+	; Teleports to Bottom breeders
+	SendInput, /
+	sleep 50
+	SendInput, home down
+	sleep 50
+	SendInput, {Enter}
+	return
+}
+
+Up() {
+	; Teleports to Bottom breeders
+	SendInput, /
+	sleep 50
+	SendInput, home up
+	sleep 50
+	SendInput, {Enter}
+	return
+}
+
+Test() {
+	Loop {
+		SendInput, {Space Down}
+		sleep 300
+		SendInput, {Space Up}
+		Random, sleeper, 42345, 173234
+		sleep %sleeper%
+		
+		sleep 5000
+		
+		
+		; Mouse Click and drag
+		SendInput, {Click, Right}
+		sleep 10000
+		
+		; Window position
+		winOpenX = 959
+		winOpenY = 601
+		
+		; checks if window is open
+		MouseMove, %winOpenX%, %winOpenY%
+		
+		sleep 2000
+		
+		PixelGetColor, winColor, %winOpenX%, %winOpenY%
+		
+		if (winColor == 0xBF887E) {
+			; Positions of claim egg box
+			eggScreenX = 1176
+			eggScreenY = 741
+			
+			sleep 5000
+			MouseMove, %eggScreenX%, %eggScreenY%
+			sleep 3000
+			
+			;Checks for option to claim egg
+			
+			PixelGetColor, eggColor, %eggScreenX%, %eggScreenY%
+			
+			;Claims egg if options is there
+			if (eggColor == 0xBD857B) {
+				SendInput, {Click, Left}
+				sleep %sleeper%
+				return
+			}
+			else {
+				sleep 2000
+				SendInput, {Esc Down}
+				sleep 200
+				SendInput, {Esc Up}
+				sleep 3000
+			}
+		}
+	}
+}
+
+AFKlog() {
+	;Brings up menu
+	sleep 4000
+	SendInput, {Esc Down}
+	sleep 200
+	SendInput, {Esc Up}
+	
+	sleep 5000
+	
+	exitButtonX = 982
+	exitButtonY = 607
+	
+	; Targets and clicks escape
+	MouseMove, %exitButtonX%, %exitButtonY%
+	sleep 1000
+	SendInput, {Click, Left}
+	
+	;afk timer
+	Random, afk, 993528, 1974386
+	sleep %afk%
+	
+	return
+}
+
+Relog() {
+	serverX = 800
+	serverY = 285
+	sleep 5000
+	MouseMove, %serverX%, %serverY%
+	sleep 5000
+	SendInput, {Click, Left}
+	SendInput, {Click, Left}
+	sleep 20000
+	return
+}
