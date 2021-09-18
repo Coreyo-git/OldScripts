@@ -1,0 +1,141 @@
+https://www.blueeye-macro.com/viewtopic.php?f=304&t=4368
+
+begin
+     Function.Execute("Tab")
+     Function.Execute("Kill")
+     Function.Execute("Check")
+     Function.Execute("Fatigue")
+     Function.Execute("Heal")
+     Function.Execute("Loot")
+ end
+ begin
+     Variable.Set random number("Button Pause", "50", "80")
+     Variable.Set random number("Human Pause", "500", "600")
+ end
+
+function("Tab")
+     if  Color.At coordinate is not (RGB)("180", "213", "89", "762", "54")
+          begin
+               Variable.Set random number("Button Pause", "50", "80")
+               Variable.Set random number("Human Pause", "500", "600")
+               Keyboard.Hold keys("{<tab>}4")
+               Macro.Pause("{Button Pause}")
+               Keyboard.Release keys("{<tab>}4")
+               Macro.Pause("{Human Pause}")
+          end
+function
+
+function("Kill")
+     if  Color.At coordinate is not (RGB)("180", "213", "89", "762", "54")
+          begin
+               Function.Execute("Tab")
+          end
+     if  Color.At coordinate is (RGB)("180", "213", "89", "762", "54")
+          begin
+               Variable.Set random number("Button Pause", "50", "80")
+               Variable.Set random number("Human Pause", "500", "600")
+               Keyboard.Hold keys("1")
+               Macro.Pause("{Button Pause}")
+               Keyboard.Release keys("1")
+               Macro.Pause("{Human Pause}")
+               Function.Execute("Check")
+          end
+function
+
+function("Check")
+     if  Color.At coordinate is not (RGB)("180", "213", "89", "762", "54")
+          begin
+               Function.Execute("Fatigue")
+          end
+     if  Color.At coordinate is (RGB)("2", "12", "26", "629", "236")
+          begin
+               Mouse.Click at coordinate("743", "235", "Left")
+          end
+function
+
+function("Heal")
+     if  Color.At coordinate is not (RGB)("198", "60", "49", "190", "127")
+          begin
+               Variable.Set random number("Button Pause", "50", "80")
+               Variable.Set random number("Human Pause", "500", "600")
+               Keyboard.Hold keys("8")
+               Macro.Pause("{Button Pause}")
+               Keyboard.Release keys("8")
+               Macro.Pause("500")
+          end
+     if  Color.At coordinate is not (RGB)("198", "60", "49", "190", "127")
+          begin
+               Variable.Set random number("Button Pause", "50", "80")
+               Variable.Set random number("Human Pause", "500", "600")
+               Keyboard.Hold keys("9")
+               Macro.Pause("{Button Pause}")
+               Keyboard.Release keys("9")
+               Macro.Pause("{Human Pause}")
+          end
+     if  Color.At coordinate is (RGB)("15", "241", "255", "184", "68")
+          begin
+               Variable.Set random number("Button Pause", "50", "80")
+               Variable.Set random number("Human Pause", "500", "600")
+               Keyboard.Hold keys("6")
+               Macro.Pause("{Button Pause}")
+               Keyboard.Release keys("6")
+               Macro.Pause("{Human Pause}")
+          end
+     if  Color.At coordinate is (RGB)("216", "65", "54", "218", "128")
+          begin
+               Function.Execute("Loot")
+          end
+function
+
+function("Loot")
+     begin
+          Keyboard.Hold keys("4")
+          Macro.Pause("{Button Pause}")
+          Keyboard.Release keys("4")
+          Macro.Pause("50")
+          Keyboard.Hold keys("4")
+          Macro.Pause("50")
+          Keyboard.Release keys("4")
+          Macro.Pause("{Button Pause}")
+          Keyboard.Hold keys("4")
+          Macro.Pause("50")
+          Keyboard.Release keys("4")
+          Macro.Pause("{Button Pause}")
+          Function.Execute("Tab")
+     end
+function
+
+function("Fatigue")
+     begin
+          if  Color.At coordinate is not (RGB)("216", "65", "54", "215", "53")
+               begin
+                    Variable.Set random number("Button Pause", "50", "80")
+                    Variable.Set random number("Human Pause", "500", "600")
+                    Keyboard.Hold keys("{<esc>}")
+                    Macro.Pause("50")
+                    Keyboard.Release keys("{<esc>}")
+                    Macro.Pause("500")
+                    Keyboard.Hold keys("{<esc>}")
+                    Macro.Pause("{Button Pause}")
+                    Keyboard.Release keys("{<esc>}")
+                    Macro.Pause("{Human Pause}")
+                    Keyboard.Hold keys("{<esc>}")
+                    Macro.Pause("{Button Pause}")
+                    Keyboard.Release keys("{<esc>}")
+                    Macro.Pause("500")
+               end
+          if  Color.At coordinate is (RGB)("105", "0", "16", "673", "496")
+               begin
+                    Mouse.Click at coordinate("673", "496", "Left")
+                    Macro.Pause("10000")
+               end
+          if  Color.At coordinate is not (RGB)("250", "214", "102", "45", "30")
+               begin
+                    Macro.Abort all macros()
+               end
+          if  Color.At coordinate is (RGB)("216", "65", "54", "215", "53")
+               begin
+                    Function.Execute("Heal")
+               end
+     end
+function
